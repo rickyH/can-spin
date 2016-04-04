@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/main.css"/>
+<style>
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #box {
+    width: 10000000px;
+    height: 1080px;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    top: 50%;
+    margin: -540px 0 0 -5000000px;
+    cursor: move;
+    opacity: 0; 
+    z-index: 2;
+  }
+
+  #container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background: #f1f1f1;
+    background-image:
+     radial-gradient(
+       #ffffff,
+       #cccccc
+     );
+    overflow: hidden;
+  }
+
+  #controls {
+    display: none;
+    z-index: 10;
+    position: fixed;
+    background: red;
+  }
+
+  .control {
+    display: block;
+  }
+
+  .viewport {
+    width: 100%;
+  }
+
+  h3{
+    text-align: left;
+  }
+
+</style>
+
+</head>
+<body onload="drag()">
+<button onclick="changeTexture()">change</button>
+
+  <div id="controls">
+    <h3>Camera:</h3>
+    <span class="control">
+      <input type="range" name="points" min="0" max="100" value="0">
+      <span class="amount">0</span>
+    </span>
+    <span class="control">
+      <input type="range" name="points" min="0" max="100" value="50">
+      <span class="amount">50</span>
+    </span>
+    <span class="control">
+      <input type="range" name="points" min="0" max="2500" value="581">
+      <span class="amount">581</span>
+    </span>
+
+    <h3>Light:</h3>
+    <span class="control">
+      <input type="range" name="points" min="0" max="100" value="48">
+      <span class="amount">48</span>
+    </span>
+    <span class="control">
+      <input type="range" name="points" min="0" max="100" value="38">
+      <span class="amount">38</span>
+    </span>
+    <span class="control">
+      <input type="range" name="points" min="0" max="2500" value="136">
+      <span class="amount">136</span>
+    </span>
+  </div>
+
+
+  <div id="container">
+    <div id="box"></div>
+    <div class="viewport"></div>
+  </div>
+
+
+
+<script src="js/GASP/plugins/CSSPlugin.min.js"></script>
+<script src="js/GASP/plugins/EaselPlugin.min.js"></script>
+<script src="js/GASP/TweenLite.min.js"></script>
+<script src="js/GASP/utils/Draggable.min.js"></script>
+<script src="js/GASP/plugins/ThrowProps.min.js"></script>
+
+<script src="js/threejs/lib/three.min.js"></script>
+<script src="js/project/3d.js"></script>
+<script src="js/project/rotationController.js"></script>
+
+<script>
+  var box;
+  var spin = {
+    x: 0,
+    y: 0
+  };
+  var dragging = false;
+</script>
+
+</body>
+</html>
