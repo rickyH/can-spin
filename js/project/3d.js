@@ -18,10 +18,10 @@ var scene = {
 		mesh: null,
 
 		init: function() {
+			this.container = document.querySelector('.viewport');
 			this.initialiseStats();
 			this.setStageSizeVariables();
 			this.initialiseStage();
-			// this.resizeStage();
 			this.addCamera();
 			this.addLights();
 			this.addModel('js/threejs/models/textures/gamma_ray.png');
@@ -37,7 +37,6 @@ var scene = {
 		},
 
 		initialiseStage: function() {
-			this.container = document.querySelector('.viewport');
 			this.clock = new THREE.Clock();
 			this.VIEW_ANGLE = 45,
 			this.NEAR = 1,
@@ -54,7 +53,7 @@ var scene = {
 
 		addCamera: function() {
 			this.camera = new THREE.PerspectiveCamera(this.VIEW_ANGLE, this.ASPECT, this.NEAR, this.FAR);
-			this.camera.position.set(0, 50, 581);
+			this.camera.position.set(9, 40, 375);
 			this.scene.add(this.camera);
 		},
 
@@ -71,7 +70,6 @@ var scene = {
 			this.light.shadowBias = -.0001
 			this.light.shadowMapWidth = this.light.shadowMapHeight = 612;
 			this.light.shadowDarkness = .7;
-
 			this.scene.add(this.light);
 
 			this.light2 = new THREE.AmbientLight( 0x202020 ); // soft white light
@@ -104,18 +102,19 @@ var scene = {
 
 			  meshFaceMaterial = new THREE.MeshFaceMaterial( materials );
 			  _this.mesh = new THREE.Mesh(geometry,  meshFaceMaterial);
-
 			  _this.mesh.receiveShadow = true;
 			  _this.mesh.castShadow = true;
 			  _this.mesh.scale.set( 150, 150, 150 );
 			  _this.scene.add(_this.mesh);
+				_this.container.classList.add('loaded') 
 				_this.render();
+
 			});
 		},
 
 		setStageSizeVariables: function () {
-			this.WIDTH = window.innerWidth;
-			this.HEIGHT = window.innerHeight;
+			this.WIDTH = this.container.getBoundingClientRect().width;
+			this.HEIGHT = this.WIDTH * 1.2; // (this.WIDTH / 9) * 10; // this.container.getBoundingClientRect().height;
 			this.ASPECT = this.WIDTH / this.HEIGHT;
 		},
 
@@ -141,7 +140,7 @@ var scene = {
 		  var time = this.clock.getElapsedTime();
 		  this.mesh.rotation.y = this.mesh.rotation.y += ( spin.x - this.mesh.rotation.y ) * 0.1;
 			this.mesh.rotation.x = this.mesh.rotation.x += ( spin.y - this.mesh.rotation.x ) * 0.1;
-			
+
 		  this.renderer.render(this.scene, this.camera);
 		  this.stats.end();
 		  requestAnimationFrame(function() {

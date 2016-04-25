@@ -4,12 +4,11 @@
 <meta charset="UTF-8">
 <title></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <link rel="stylesheet" href="css/main.css" rel='stylesheet' type='text/css'/>
-
 </head>
 <body onload="scene.init()">
-<button onclick="changeTexture()">change</button>
+
 
   <div id="controls">
     <h3>Camera:</h3>
@@ -44,9 +43,62 @@
   <div id="container">
     <div id="header">
       Beavertown Gamma Ray
+      <span class="previous glyphicon glyphicon-menu-left"></span>
+      <span class="next glyphicon glyphicon-menu-right"></span>
     </div>
-    <div class="viewport"></div>
+
+    <div class="main-content container">
+      <div class="row">
+        <div class="viewport col-sm-6 col-xs-12">
+
+        </div>
+        <div class="col-sm-6 col-xs-12 bottom-padder top-padder">
+          <h3>About Gamma Ray</h3>
+          <p class="bottom-padder">
+            The concept was to create a juicy tropical beer. A brew you can sit on and drink all day, rammed with juicy malts and huge tropical aromas of mango and grapefruit. Massive additions of whole leaf American hops are added in ever increasing numbers at the end of the boil giving huge hop flavour. The beer is then dry hopped for days, driving the punchy aromas so you can smell it from miles away!
+          </p>
+          <table class="table table-condensed">
+            <tbody>
+              <tr> <td class="bold">Style</td> <td>American IPA</td> </tr>
+              <tr> <td class="bold">ABV</td> <td>5.4%</td> </tr>
+              <tr> <td class="bold">IBU</td> <td>55</td> </tr>
+              <tr> <td class="bold">Malt</td> <td>Best Pale, Caragold, Caramalt</td> </tr>
+              <tr> <td class="bold">Hops</td> <td>Columbus, Bravo, Amarillo, Citra, Calypso</td> </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div class="container sub-content">
+    <div class="row">
+      <div class="col-sm-12 col-md-4">
+        <h3>Beavertown</h3>
+        <p>
+          Beavertown Brewery is an artisan microbrewery based in De Beauvoir Town in Hackney.  We opened our doors in February 2012 as part of the Brewpub, Duke's Brew and Que, brewing both cask and bottle conditioned beers by hand.
+        </p>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <h3>Food Pairing</h3>
+        <table class="table table-condensed">
+          <tbody>
+            <tr> <td >Spicy carne asada with a pico de gallo sauce.</td> </tr>
+            <tr> <td >Shredded chicken tacos with a mango chilli lime salsa.</td> </tr>
+            <tr> <td >Cheesecake with a passion fruit swirl sauce.</td> </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <h3>Where to buy</h3>
+        <button type="button" class="btn btn-info btn-lg btn-block">Buy Online</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+
+  </footer>
 
 <script>
   // TODO: these shouldnt be global variables

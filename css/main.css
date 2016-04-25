@@ -12,21 +12,59 @@
 
   h3 {
     text-align: left;
+    font-size: 2.3rem;
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+
+  p {
+    font-size: 1.7rem;
+    line-height: 160%;
+    font-weight: 200;
+  }
+
+  table {
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+
+  @media (min-width: 1200px) {
+    p {
+      font-size: 1.9rem;
+    }
+
+    table {
+      font-size: 1.7rem;
+    }
+
+  }
+
+  .bottom-padder {
+    margin-bottom: 4rem;
+  }
+
+  .top-padder {
+    padding-top: 2rem;
   }
 
   #container {
     width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0px;
-    top: 0px;
     background: #f1f1f1;
     background-image:
      radial-gradient(
        #ffffff,
        #cccccc
      );
+    background: #F4F2EF;
     overflow: hidden;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+    color: #666;
+  }
+
+  #container h3 {
+    color: #212121;
   }
 
   #controls {
@@ -36,13 +74,27 @@
     background: red;
   }
 
+  .bold {
+    font-weight: 500;
+  }
+
   .control {
     display: block;
   }
 
   .viewport {
-    width: 100%;
     cursor: move;
+    opacity: 0;
+    -webkit-transition: opacity 900ms; /* Safari */
+    transition: opacity 900ms;
+  }
+
+  .viewport.loaded {
+    opacity: 1;
+  }
+
+  .main-content {
+    margin-top: 20px;
   }
 
 
@@ -51,15 +103,70 @@
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
     height: 80px;
     line-height: 80px;
-    left: 0;
-    position: fixed;
-    top: 0;
     width: 100%;
     z-index: 200;
     letter-spacing: 0.2rem;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
     font-weight: 600;
     font-family: 'Open Sans', sans-serif;
     text-align: center;
+    color: #000;
+    position: relative;
+    font-size: 1.3rem;
+  }
+
+  .next {
+    position: absolute;
+    right: 5px;
+    top: 21px;
+    cursor: pointer;
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.4rem;
+  }
+
+  .previous {
+    position: absolute;
+    left: 5px;
+    top: 21px;
+    cursor: pointer;
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.4rem;
+  }
+
+  @media (min-width: 600px) {
+    #header {
+      font-size: 1.8rem;
+    }
+
+    .next {
+      font-size: 1.8rem;
+      right: 20px;
+    }
+
+    .previous {
+      font-size: 1.8rem;
+      left: 20px;
+    }
+  }
+
+  .next:hover {
+    opacity: 0.6;
+  }
+
+  .sub-content .row > div {
+    margin-bottom: 40px;
+  }
+
+  footer {
+    height: 100px;
+    background: #F4F2EF;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 20px;
   }

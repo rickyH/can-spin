@@ -8,8 +8,8 @@
       windowHalfY = window.innerWidth || e.clientWidth || g.clientWidth,
 			targetRotationOnMouseDownX = 0;
       targetRotationOnMouseDownY = 0;
-      yMax = 0.3;
-      scene
+      yMax = 0.45;
+      spin.x = 3.142*2;
 
       function onDocumentMouseDown( event ) {
 				event.preventDefault();
@@ -22,6 +22,7 @@
         mouseYOnMouseDown = event.clientY - windowHalfY;
         targetRotationOnMouseDownY = spin.y;
 			}
+
 			function onDocumentMouseMove( event ) {
 				mouseX = event.clientX - windowHalfX;
 				spin.x = targetRotationOnMouseDownX + ( mouseX - mouseXOnMouseDown ) * 0.01;
@@ -34,38 +35,48 @@
         } else if (spin.y < -(yMax)) {
           spin.y = -(yMax);
         }
-
 			}
+
 			function onDocumentMouseUp( event ) {
 				container.removeEventListener( 'mousemove', onDocumentMouseMove, false );
 				container.removeEventListener( 'mouseup', onDocumentMouseUp, false );
 				container.removeEventListener( 'mouseout', onDocumentMouseOut, false );
 			}
+
 			function onDocumentMouseOut( event ) {
 				container.removeEventListener( 'mousemove', onDocumentMouseMove, false );
 				container.removeEventListener( 'mouseup', onDocumentMouseUp, false );
 				container.removeEventListener( 'mouseout', onDocumentMouseOut, false );
 			}
+
 			function onDocumentTouchStart( event ) {
 				if ( event.touches.length === 1 ) {
-					event.preventDefault();
+					// event.preventDefault();
 					mouseXOnMouseDown = event.touches[ 0 ].pageX - windowHalfX;
 					targetRotationOnMouseDownX = spin.x;
 
           mouseYOnMouseDown = event.touches[ 0 ].pageY - windowHalfY;
           targetRotationOnMouseDownY = spin.y;
-
+          
 				}
 			}
+
 			function onDocumentTouchMove( event ) {
 				if ( event.touches.length === 1 ) {
-					event.preventDefault();
 					mouseX = event.touches[ 0 ].pageX - windowHalfX;
-					spin.x = targetRotationOnMouseDownX + ( mouseX - mouseXOnMouseDown ) * 0.05;
+					spin.x = targetRotationOnMouseDownX + ( mouseX - mouseXOnMouseDown ) * 0.015;
 
           mouseY = event.touches[ 0 ].pageY - windowHalfY;
-          spin.y = targetRotationOnMouseDownY + ( mouseY - mouseYOnMouseDown ) * 0.05;
+          spin.y = targetRotationOnMouseDownY + ( mouseY - mouseYOnMouseDown ) * 0.015;
 
+          if (spin.y > yMax) {
+            spin.y = yMax;
+          } else if (spin.y < -(yMax)) {
+            spin.y = -(yMax);
+          }
+          else {
+    				event.preventDefault();
+          }
 				}
 			}
 
