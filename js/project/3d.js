@@ -16,8 +16,10 @@ var scene = {
 		FAR: null,
 		stats: null,
 		mesh: null,
+		material: null,
 
 		init: function() {
+			content.init();
 			this.container = document.querySelector('.viewport');
 			this.initialiseStats();
 			this.setStageSizeVariables();
@@ -78,12 +80,12 @@ var scene = {
 
 		addModel: function(textureURL) {
 			var model = 'js/threejs/models/can3.js';
-			var material, material2, meshFaceMaterial;
+			var material2, meshFaceMaterial;
 			var _this = this;
 
 			this.loader = new THREE.JSONLoader();
 			this.loader.load(model, function (geometry, materials) {
-			  material = new THREE.MeshLambertMaterial({
+			  _this.material = new THREE.MeshLambertMaterial({
 			    map: THREE.ImageUtils.loadTexture(textureURL),
 			    colorAmbient: [0.480000026226044, 0.480000026226044, 0.480000026226044],
 			    colorDiffuse: [0.480000026226044, 0.480000026226044, 0.480000026226044],
@@ -97,7 +99,7 @@ var scene = {
 			    colorSpecular: [0.8999999761581421, 0.8999999761581421, 0.8999999761581421]
 			  });
 
-			  materials[1] = material;
+			  materials[1] = _this.material;
 			  materials[0] = material2;
 
 			  meshFaceMaterial = new THREE.MeshFaceMaterial( materials );
@@ -106,7 +108,7 @@ var scene = {
 			  _this.mesh.castShadow = true;
 			  _this.mesh.scale.set( 150, 150, 150 );
 			  _this.scene.add(_this.mesh);
-				_this.container.classList.add('loaded') 
+				_this.container.classList.add('loaded')
 				_this.render();
 
 			});
