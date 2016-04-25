@@ -14,19 +14,6 @@
     text-align: left;
   }
 
-  #box {
-    width: 10000000px;
-    height: 1080px;
-    position: absolute;
-    top: 100px;
-    left: 50%;
-    top: 50%;
-    margin: -540px 0 0 -5000000px;
-    cursor: move;
-    opacity: 0;
-    z-index: 2;
-  }
-
   #container {
     width: 100%;
     height: 100%;
@@ -55,6 +42,7 @@
 
   .viewport {
     width: 100%;
+    cursor: move;
   }
 
 

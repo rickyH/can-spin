@@ -140,8 +140,8 @@ var scene = {
 
 		  var time = this.clock.getElapsedTime();
 		  this.mesh.rotation.y = this.mesh.rotation.y += ( spin.x - this.mesh.rotation.y ) * 0.1;
-		  // this.mesh.rotation.x = de2ra(spin.y / 3.5 || 0)
-
+			this.mesh.rotation.x = this.mesh.rotation.x += ( spin.y - this.mesh.rotation.x ) * 0.1;
+			
 		  this.renderer.render(this.scene, this.camera);
 		  this.stats.end();
 		  requestAnimationFrame(function() {

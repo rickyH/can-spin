@@ -3,49 +3,74 @@
   var d = document,
       e = d.documentElement,
       g = d.getElementsByTagName('body')[0],
+      container = document.querySelector('.viewport'),
       windowHalfX = window.innerHeight || e.clientHeight || g.clientHeight,
       windowHalfY = window.innerWidth || e.clientWidth || g.clientWidth,
-			targetRotationOnMouseDown = 0;
+			targetRotationOnMouseDownX = 0;
+      targetRotationOnMouseDownY = 0;
+      yMax = 0.3;
+      scene
 
       function onDocumentMouseDown( event ) {
 				event.preventDefault();
-				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-				document.addEventListener( 'mouseup', onDocumentMouseUp, false );
-				document.addEventListener( 'mouseout', onDocumentMouseOut, false );
+				container.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				container.addEventListener( 'mouseup', onDocumentMouseUp, false );
+				container.addEventListener( 'mouseout', onDocumentMouseOut, false );
 				mouseXOnMouseDown = event.clientX - windowHalfX;
-				targetRotationOnMouseDown = spin.x;
+				targetRotationOnMouseDownX = spin.x;
+
+        mouseYOnMouseDown = event.clientY - windowHalfY;
+        targetRotationOnMouseDownY = spin.y;
 			}
 			function onDocumentMouseMove( event ) {
 				mouseX = event.clientX - windowHalfX;
-				spin.x = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.01;
+				spin.x = targetRotationOnMouseDownX + ( mouseX - mouseXOnMouseDown ) * 0.01;
+
+        mouseY = event.clientY - windowHalfY;
+        spin.y = targetRotationOnMouseDownY + ( mouseY - mouseYOnMouseDown ) * 0.01;
+
+        if (spin.y > yMax) {
+          spin.y = yMax;
+        } else if (spin.y < -(yMax)) {
+          spin.y = -(yMax);
+        }
+
 			}
 			function onDocumentMouseUp( event ) {
-				document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
-				document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
-				document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+				container.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+				container.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+				container.removeEventListener( 'mouseout', onDocumentMouseOut, false );
 			}
 			function onDocumentMouseOut( event ) {
-				document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
-				document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
-				document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+				container.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+				container.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+				container.removeEventListener( 'mouseout', onDocumentMouseOut, false );
 			}
 			function onDocumentTouchStart( event ) {
 				if ( event.touches.length === 1 ) {
 					event.preventDefault();
 					mouseXOnMouseDown = event.touches[ 0 ].pageX - windowHalfX;
-					targetRotationOnMouseDown = spin.x;
+					targetRotationOnMouseDownX = spin.x;
+
+          mouseYOnMouseDown = event.touches[ 0 ].pageY - windowHalfY;
+          targetRotationOnMouseDownY = spin.y;
+
 				}
 			}
 			function onDocumentTouchMove( event ) {
 				if ( event.touches.length === 1 ) {
 					event.preventDefault();
 					mouseX = event.touches[ 0 ].pageX - windowHalfX;
-					spin.x = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.05;
+					spin.x = targetRotationOnMouseDownX + ( mouseX - mouseXOnMouseDown ) * 0.05;
+
+          mouseY = event.touches[ 0 ].pageY - windowHalfY;
+          spin.y = targetRotationOnMouseDownY + ( mouseY - mouseYOnMouseDown ) * 0.05;
+
 				}
 			}
 
-      document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-      document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-      document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+      container.addEventListener( 'mousedown', onDocumentMouseDown, false );
+      container.addEventListener( 'touchstart', onDocumentTouchStart, false );
+      container.addEventListener( 'touchmove', onDocumentTouchMove, false );
 
 })(spin);
