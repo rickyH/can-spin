@@ -1,6 +1,4 @@
 
-
-
 var scene = {
 		container: null,
 		scene: null,
