@@ -5,6 +5,12 @@ container = document.querySelector('.viewport');
 
 clock = new THREE.Clock();
 
+var stats = new Stats();
+		stats.showPanel( 0 );
+		stats.dom.style.top = 'auto';
+		stats.dom.style.bottom = '0px';
+		document.body.appendChild( stats.dom );
+
 WIDTH = window.innerWidth,
 HEIGHT = window.innerHeight;
 
@@ -102,6 +108,16 @@ loader.load(model, function (geometry, materials) {
   // mesh.scale.set( 100, 100, 100 );
   mesh.scale.set( 150, 150, 150 );
   scene.add(mesh);
+
+  // mesh2 = new THREE.Mesh(geometry,  meshFaceMaterial);
+  // mesh2.receiveShadow = true;
+  // mesh2.castShadow = false;
+  // mesh2.position.set(200, 0, 0);
+  // mesh2.scale.set( 150, 150, 150 );
+  // scene.add(mesh2);
+
+
+
   render();
 });
 
@@ -109,24 +125,16 @@ function de2ra(degree) { return degree*(Math.PI/180); }
 
 var i = 0;
 function render() {
- var time = clock.getElapsedTime();
+ stats.begin();
 
- mesh.rotation.y = de2ra(spin.x || 0)
+ var time = clock.getElapsedTime();
+ mesh.rotation.y = mesh.rotation.y += ( spin.x - mesh.rotation.y ) * 0.1;
  mesh.rotation.x = de2ra(spin.y / 3.5 || 0)
 
- // console.log(dragging, spin.y);
- //
- // if (!dragging) {
- //   if (spin.y > 0 ) {
- //     spin.y = ~~(spin.y - 0.5);
- //   } else if (spin.y < 0){
- //     spin.y = ~~(spin.y + 0.5);
- //   }
- // }
-
-
  renderer.render(scene, camera);
+ stats.end();
  requestAnimationFrame(render);
+
 }
 
 function changeTexture() {

@@ -5,6 +5,7 @@
 <title></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/main.css"/>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 <style>
 
   * {
@@ -27,7 +28,7 @@
     top: 50%;
     margin: -540px 0 0 -5000000px;
     cursor: move;
-    opacity: 0; 
+    opacity: 0;
     z-index: 2;
   }
 
@@ -48,7 +49,7 @@
 
   #controls {
     display: none;
-    z-index: 10;
+    z-index: 100;
     position: fixed;
     background: red;
   }
@@ -65,10 +66,27 @@
     text-align: left;
   }
 
+  #header {
+    background-color: #fff;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+    height: 80px;
+    line-height: 80px;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 200;
+    letter-spacing: 0.2rem;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+  }
+
 </style>
 
 </head>
-<body onload="drag()">
+<body>
 <button onclick="changeTexture()">change</button>
 
   <div id="controls">
@@ -101,23 +119,13 @@
     </span>
   </div>
 
-
   <div id="container">
+    <div id="header">
+      Beavertown Gamma Ray
+    </div>
     <div id="box"></div>
     <div class="viewport"></div>
   </div>
-
-
-
-<script src="js/GASP/plugins/CSSPlugin.min.js"></script>
-<script src="js/GASP/plugins/EaselPlugin.min.js"></script>
-<script src="js/GASP/TweenLite.min.js"></script>
-<script src="js/GASP/utils/Draggable.min.js"></script>
-<script src="js/GASP/plugins/ThrowProps.min.js"></script>
-
-<script src="js/threejs/lib/three.min.js"></script>
-<script src="js/project/3d.js"></script>
-<script src="js/project/rotationController.js"></script>
 
 <script>
   var box;
@@ -127,6 +135,12 @@
   };
   var dragging = false;
 </script>
+
+<script src="js/threejs/lib/three.min.js"></script>
+<script src="js/threejs/lib/stats.min.js"></script>
+<script src="js/project/3d.js"></script>
+<script src="js/project/rotationController.js"></script>
+
 
 </body>
 </html>

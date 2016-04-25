@@ -1,70 +1,51 @@
-  function drag() {
-    box = document.getElementById("box");
-    var controlsHolder = document.getElementById("controls");
-    var w = window,
-        d = document,
-        e = d.documentElement,
-        g = d.getElementsByTagName('body')[0],
-        sy = w.innerHeight|| e.clientHeight|| g.clientHeight;
-    box.style.height = (sy + 150) + 'px';
-    box.style.marginTop = -((sy + 150) / 2) + 'px';
 
+(function(spin){
+  var d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      windowHalfX = window.innerHeight || e.clientHeight || g.clientHeight,
+      windowHalfY = window.innerWidth || e.clientWidth || g.clientWidth,
+			targetRotationOnMouseDown = 0;
 
-    Draggable.create(box, {
-      type:"x, y",
-      throwProps:true,
-      bounds:"#container",
-      onDrag: update,
-      onThrowUpdate: update,
-      onThrowComplete: update,
-      onDragStart: function() {
-        dragging = true;
-      },
-      onDragEnd: function() {
-        dragging = false;
-      }
-    });
+      function onDocumentMouseDown( event ) {
+				event.preventDefault();
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+				document.addEventListener( 'mouseout', onDocumentMouseOut, false );
+				mouseXOnMouseDown = event.clientX - windowHalfX;
+				targetRotationOnMouseDown = spin.x;
+			}
+			function onDocumentMouseMove( event ) {
+				mouseX = event.clientX - windowHalfX;
+				spin.x = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.01;
+			}
+			function onDocumentMouseUp( event ) {
+				document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+				document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+			}
+			function onDocumentMouseOut( event ) {
+				document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+				document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+			}
+			function onDocumentTouchStart( event ) {
+				if ( event.touches.length === 1 ) {
+					event.preventDefault();
+					mouseXOnMouseDown = event.touches[ 0 ].pageX - windowHalfX;
+					targetRotationOnMouseDown = spin.x;
+				}
+			}
+			function onDocumentTouchMove( event ) {
+				if ( event.touches.length === 1 ) {
+					event.preventDefault();
+					mouseX = event.touches[ 0 ].pageX - windowHalfX;
+					spin.x = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.05;
+				}
+			}
 
+      document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+      document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+      document.addEventListener( 'touchmove', onDocumentTouchMove, false );
 
-    function update() {
-
-      spin.x = this.x;
-      spin.y = this.y;
-      //spin.y = this.y;
-    }
-
-    var controls = controlsHolder.querySelectorAll(".control");
-    for (var i = 0; i<controls.length; i++){
-       const control = controls[i];
-       const input = control.querySelector('input');
-       const output = control.querySelector('span');
-
-       input.addEventListener('input', function(e){
-         output.innerHTML = this.value;
-         set();
-       });
-    }
-
-    function set() {
-      console.log(
-          parseInt(controls[0].querySelector('input').value),
-          parseInt(controls[1].querySelector('input').value),
-          parseInt(controls[2].querySelector('input').value)
-      );
-
-      camera.position.set(
-        parseInt(controls[0].querySelector('input').value),
-        parseInt(controls[1].querySelector('input').value),
-        parseInt(controls[2].querySelector('input').value)
-      );
-
-      light.position.set(
-        parseInt(controls[3].querySelector('input').value),
-        parseInt(controls[4].querySelector('input').value),
-        parseInt(controls[5].querySelector('input').value)
-      );
-    }
-
-
-
-  }
+})(spin);
