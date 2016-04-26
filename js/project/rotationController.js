@@ -57,7 +57,6 @@
 
           mouseYOnMouseDown = event.touches[ 0 ].pageY - windowHalfY;
           targetRotationOnMouseDownY = spin.y;
-          
 				}
 			}
 

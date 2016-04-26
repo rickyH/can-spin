@@ -13,6 +13,10 @@ var content = {
     this.dom['dyn-hops'] = document.getElementById('dyn-hops');
     this.dom['dyn-brewer-name'] = document.getElementById('dyn-brewer-name');
     this.dom['dyn-brewery-desc'] = document.getElementById('dyn-brewery-desc');
+
+    this.dom['dyn-food-1'] = document.getElementById('dyn-food-1');
+    this.dom['dyn-food-2'] = document.getElementById('dyn-food-2');
+    this.dom['dyn-food-3'] = document.getElementById('dyn-food-3');
   },
   next: function () {
     this.position++;
@@ -40,6 +44,10 @@ var content = {
     this.dom['dyn-hops'].innerHTML = item.hops;
     this.dom['dyn-brewer-name'].innerHTML = item.breweryName;
     this.dom['dyn-brewery-desc'].innerHTML = item.breweryDesc;
+
+    this.dom['dyn-food-1'].innerHTML = item.foodPairing[0];
+    this.dom['dyn-food-2'].innerHTML = item.foodPairing[1];
+    this.dom['dyn-food-3'].innerHTML = item.foodPairing[2];
     // scene.material.src = item.imageURL;
     scene.mesh.material.materials[1] = new THREE.MeshLambertMaterial({
       map: THREE.ImageUtils.loadTexture(item.imageURL),
@@ -63,9 +71,9 @@ var content = {
       malt: "Best Pale, Caragold, Caramalt",
       hops: "Columbus, Bravo, Amarillo, Citra, Calypso",
       foodPairing: [
-        "Spicy carne asada with a pico de gallo sauce.",
-        "Shredded chicken tacos with a mango chilli lime salsa.",
-        "Cheesecake with a passion fruit swirl sauce."
+        "Pulled Lamb madras with bombay potatoes.",
+        "Day smoked beef brisket.",
+        "Salted caramel and orange brownies"
       ],
       imageURL: 'js/threejs/models/textures/gamma_ray.png'
     },
@@ -88,20 +96,20 @@ var content = {
     },
     {
       breweryName: "Duff",
-      breweryDesc: "BrewDog produces about 2.2 million bottles and 400,000 cans per month (Oct 2015). It was founded in Fraserburgh in 2007 by James Watt and Martin Dickie. Their main brewing moved to nearby Ellon in 2012.",
+      breweryDesc: "Duff Brewery, Springfield: 'Can't Get Enough of That Wonderful Duff' who's spokesperson is Duffman.",
       name: "Duff Beer",
-      about: "Our scene-stealing flagship is an India Pale Ale that has become a byword for craft beer rebellion; synonymous with the insurgency against mass-produced, lowest common denominator beer. Punk IPA charges the barricades to fly its colours from the ramparts – full-on, full-flavour; at full-throttle.",
-      style: "IPA",
-      abv: "5.6%",
-      ibu: "35",
-      malt: "Extra Pale",
-      hops: "Chinook, Ahtanum, Amarillo, Cascade, Simcoe, Nelson Sauvin",
+      about: "Duff Beer is a brand of beer that originally started as a fictional beverage on the animated series The Simpsons. Since then it has become a real brand of beer in a number of countries without permission or consent from its original creator, Matt Groening, and has resulted in legal battles with varying results. An official version of the beer is sold in three variations near The Simpsons Ride at Universal Studios.",
+      style: "Pilsner",
+      abv: "4.9%",
+      ibu: "12",
+      malt: "Barley, Rice",
+      hops: "Hallertau, Michelob",
       foodPairing: [
-        "Spicy carne asada with a pico de gallo sauce.",
-        "Shredded chicken tacos with a mango chilli lime salsa.",
-        "Cheesecake with a passion fruit swirl sauce."
+        "Bacon Donuts.",
+        "Moon Waffles.",
+        "Krusty Burger."
       ],
       imageURL: "js/threejs/models/textures/duff.gif"
     }
   ]
-}; 
+};
