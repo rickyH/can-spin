@@ -3,6 +3,7 @@ var content = {
   dom: {},
   position: 0,
   init: function () {
+    var _this = this;
     this.dom['dyn-title'] = document.getElementById('dyn-title');
     this.dom['dyn-name'] = document.getElementById('dyn-name');
     this.dom['dyn-desc'] = document.getElementById('dyn-desc');
@@ -17,6 +18,14 @@ var content = {
     this.dom['dyn-food-1'] = document.getElementById('dyn-food-1');
     this.dom['dyn-food-2'] = document.getElementById('dyn-food-2');
     this.dom['dyn-food-3'] = document.getElementById('dyn-food-3');
+
+    window.addEventListener('keydown', function(event) {
+      if (event.key === "ArrowRight") {
+        _this.next();
+      } else if (event.key === "ArrowLeft") {
+        _this.previous();
+      }
+    });
   },
   next: function () {
     this.position++;
