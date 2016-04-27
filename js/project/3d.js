@@ -26,7 +26,7 @@ var scene = {
 			this.initialiseStage();
 			this.addCamera();
 			this.addLights();
-			this.addModel('js/threejs/models/textures/gamma_ray.png');
+			this.addModel('./js/threejs/models/textures/gamma_ray.png');
 			this.addEvents();
 		},
 
@@ -79,7 +79,7 @@ var scene = {
 		},
 
 		addModel: function(textureURL) {
-			var model = 'js/threejs/models/can3.js';
+			var model = './js/threejs/models/can3.js';
 			var material2, meshFaceMaterial;
 			var _this = this;
 
@@ -93,7 +93,7 @@ var scene = {
 			  });
 
 			  material2 = new THREE.MeshLambertMaterial({
-			    map: THREE.ImageUtils.loadTexture('js/threejs/models/Metal.png'),
+			    map: THREE.ImageUtils.loadTexture('./js/threejs/models/Metal.png'),
 			    colorAmbient: [0.480000026226044, 0.480000026226044, 0.480000026226044],
 			    colorDiffuse: [0.480000026226044, 0.480000026226044, 0.480000026226044],
 			    colorSpecular: [0.8999999761581421, 0.8999999761581421, 0.8999999761581421]

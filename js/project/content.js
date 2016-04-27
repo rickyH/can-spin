@@ -20,9 +20,10 @@ var content = {
     this.dom['dyn-food-3'] = document.getElementById('dyn-food-3');
 
     window.addEventListener('keydown', function(event) {
-      if (event.key === "ArrowRight") {
+      console.log(event);
+      if (event.key === "ArrowRight" || event.code === "ArrowRight") {
         _this.next();
-      } else if (event.key === "ArrowLeft") {
+      } else if (event.key === "ArrowLeft" || event.code === "ArrowLeft") {
         _this.previous();
       }
     });
